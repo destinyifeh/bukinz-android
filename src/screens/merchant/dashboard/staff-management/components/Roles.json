@@ -1,0 +1,35 @@
+[
+
+   {
+    "label": "Accountant",
+     "value": "accountant"
+   } ,
+   {
+    "label":"Secretary",
+    "value": "secretary"
+   },
+   {
+    "label":"Stylist",
+    "value": "stylist"
+   },
+   {
+    "label": "Barber",
+    "value":"barber"
+   },
+   {
+    "label":"Electrician",
+    "value":"electrician"
+   },
+   {
+    "label":"Mechanic",
+    "value":"mechanic"
+   },
+   {
+    "label": "Teacher",
+    "value": "teacher"
+   },
+   {
+    "label": "Musician",
+     "value":"musician"
+   }
+]

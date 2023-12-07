@@ -1,0 +1,122 @@
+[
+  {
+    "label": "Electrical Services",
+    "value": "electrical services"
+  },
+
+  {
+    "label": "Barbing Services",
+    "value": "barbing services"
+  },
+
+  {
+    "label": "Construction Services",
+    "value": "construction services"
+  },
+
+  {
+    "label": "Carpentry",
+    "value": "carpentry"
+  },
+
+  {
+    "label": "Stylist",
+    "value": "stylist"
+  },
+
+  {
+    "label": "Mechanical Services",
+    "value": "mechanical services"
+  },
+
+  {
+    "label": "Musical Services",
+    "value": "musical services"
+  },
+  {
+    "label": "Teaching",
+    "value": "teaching"
+  },
+
+  {
+    "label": "Project Manager",
+    "value": "project manager"
+  },
+
+  {
+    "label": "Banking Services",
+    "value": "banking services"
+  },
+
+  {
+    "label": "Fitness Trainer",
+    "value": "fitness trainer"
+  },
+
+  {
+    "label": "Actor",
+    "value": "actor"
+  },
+
+  {
+    "label": "Actress",
+    "value": "actress"
+  },
+
+  {
+    "label": "Travel Agency",
+    "value": "travel agency"
+  },
+  {
+    "label": "Speaker",
+    "value": "speaker"
+  },
+
+  {
+    "label": "Driver",
+    "value": "driver"
+  },
+
+  {
+    "label": "Pastor",
+    "value": "pastor"
+  },
+
+  {
+    "label": "Director",
+    "value": "director"
+  },
+
+  {
+    "label": "Graphic Designer",
+    "value": "graphic designer"
+  },
+
+  {
+    "label": "Web Developer",
+    "value": "web developer"
+  },
+
+  {
+    "label": "Blogger",
+    "value": "blogger"
+  },
+  {
+    "label": "Lecturer",
+    "value": "lecturer"
+  },
+
+  {
+    "label": "Researcher",
+    "value": "researcher"
+  },
+  {
+    "label": "Builder",
+    "value": "builder"
+  },
+
+  {
+    "label": "Baker",
+    "value": "baker"
+  }
+]
