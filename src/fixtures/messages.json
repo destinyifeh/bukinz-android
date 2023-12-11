@@ -1,0 +1,26 @@
+[
+  {
+    "title": "Please i need it now",
+    "id": "one",
+    "isRead": false,
+    "isNew": false
+  },
+  {
+    "title": "Please i don't need it now",
+    "id": "two",
+    "isRead": false,
+    "isNew": true
+  },
+  {
+    "title": "I don't need it now",
+    "id": "three",
+    "isRead": true,
+    "isNew": false
+  },
+  {
+    "title": "I don't need it now",
+    "id": "three",
+    "isRead": true,
+    "isNew": false
+  }
+]

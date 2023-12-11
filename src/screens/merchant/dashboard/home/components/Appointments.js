@@ -12,7 +12,7 @@ import {
 } from '../../../../../constants/Styles';
 export default function Appointments({toggleModal}) {
   return (
-    <View style={{marginBottom: 15}}>
+    <View style={{marginBottom: 5}}>
       <View style={styles.appointmentItem}>
         <View style={styles.appointmentItemInnerView}>
           <TouchableOpacity style={styles.userIcon}>

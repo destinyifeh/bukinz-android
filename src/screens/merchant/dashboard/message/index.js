@@ -5,6 +5,7 @@ import {
   StatusBar,
   StyleSheet,
   Text,
+  TouchableOpacity,
   View,
   useWindowDimensions,
 } from 'react-native';
@@ -23,6 +24,7 @@ import {
   FONT_SIZE_MID,
   MAX_ALLOWED_WIDTH,
 } from '../../../../constants/Styles';
+import CallItems from './components/calls';
 import MessageItems from './components/message-items';
 
 export default function MessageScreen() {
@@ -30,7 +32,7 @@ export default function MessageScreen() {
   const {height, width} = useWindowDimensions();
   const navigation = useNavigation();
   const [isLoadingMessage, setIsLoadingMessage] = React.useState(false);
-
+  const [messageNav, setMessageNav] = React.useState({chat: true, call: false});
   useFocusEffect(
     React.useCallback(() => {
       StatusBar.setBackgroundColor(COLOUR_DARK_GREEN);
@@ -44,8 +46,17 @@ export default function MessageScreen() {
     setIsLoadingMessage(true);
     setTimeout(() => {
       setIsLoadingMessage(false);
-    }, 7000);
+    }, 3000);
   }, []);
+
+  const handleMesageNav = type => {
+    console.log(type, 'typoo');
+    if (type === 'chat') {
+      setMessageNav({chat: true});
+    } else {
+      setMessageNav({call: true});
+    }
+  };
   return (
     <View style={{flex: 1, backgroundColor: COLOUR_DARK_GREEN}}>
       <View style={{marginTop: 40}}>
@@ -85,22 +96,65 @@ export default function MessageScreen() {
               marginHorizontal: 20,
               width: width > MAX_ALLOWED_WIDTH && MAX_ALLOWED_WIDTH,
             }}>
-            {isLoadingMessage ? (
+            <View
+              style={{
+                marginBottom: 20,
+                flexDirection: 'row',
+                justifyContent: 'space-around',
+              }}>
+              <TouchableOpacity
+                onPress={() => handleMesageNav('chat')}
+                style={messageNav.chat && styles.chatCallContainer}>
+                <Text
+                  style={
+                    messageNav.chat
+                      ? styles.chatCallText
+                      : styles.chatCallInactiveText
+                  }>
+                  Chat
+                </Text>
+              </TouchableOpacity>
+              <View style={styles.chatCallLine}></View>
+              <TouchableOpacity
+                onPress={() => handleMesageNav('call')}
+                style={messageNav.call && styles.chatCallContainer}>
+                <Text
+                  style={
+                    messageNav.call
+                      ? styles.chatCallText
+                      : styles.chatCallInactiveText
+                  }>
+                  Call
+                </Text>
+              </TouchableOpacity>
+            </View>
+            {messageNav.chat && (
               <>
-                <NotificationSkeleton />
-                <NotificationSkeleton />
-                <NotificationSkeleton />
-                <NotificationSkeleton />
+                {isLoadingMessage ? (
+                  <>
+                    <NotificationSkeleton />
+                    <NotificationSkeleton />
+                    <NotificationSkeleton />
+                    <NotificationSkeleton />
+                  </>
+                ) : (
+                  <>
+                    <MessageItems isRead={false} />
+                    <View style={styles.messageDaycontainer}>
+                      <View style={styles.line} />
+                      <Text style={styles.dayText}>Yesterday</Text>
+                      <View style={styles.line} />
+                    </View>
+                    <MessageItems isRead={true} />
+                  </>
+                )}
               </>
-            ) : (
+            )}
+
+            {messageNav.call && (
               <>
-                <MessageItems isRead={false} />
-                <View style={styles.messageDaycontainer}>
-                  <View style={styles.line} />
-                  <Text style={styles.dayText}>Yesterday</Text>
-                  <View style={styles.line} />
-                </View>
-                <MessageItems isRead={true} />
+                <CallItems />
+                <CallItems yesterday={'yesterday'} />
               </>
             )}
           </View>
@@ -241,5 +295,29 @@ const styles = StyleSheet.create({
   dayText: {
     marginHorizontal: 10,
     color: 'grey',
+  },
+  chatCallText: {
+    fontFamily: FONT_FAMILY_BODY,
+    fontWeight: '500',
+    fontSize: 16,
+    lineHeight: 18.75,
+    color: COLOUR_DARK_GREEN,
+  },
+  chatCallInactiveText: {
+    fontFamily: FONT_FAMILY_BODY,
+    fontWeight: '400',
+    fontSize: 16,
+    lineHeight: 18.75,
+    color: COLOUR_SECONDARY_GREY,
+  },
+  chatCallContainer: {
+    borderBottomWidth: 2,
+    borderColor: COLOUR_DARK_GREEN,
+    width: 74,
+    alignItems: 'center',
+  },
+  chatCallLine: {
+    borderWidth: 1,
+    borderColor: COLOUR_SECONDARY_GREY,
   },
 });

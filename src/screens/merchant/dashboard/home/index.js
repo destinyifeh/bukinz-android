@@ -12,6 +12,8 @@ import {
   View,
   useWindowDimensions,
 } from 'react-native';
+import {SwiperFlatList} from 'react-native-swiper-flatlist';
+
 import Entypo from 'react-native-vector-icons/Entypo';
 import Feather from 'react-native-vector-icons/Feather';
 import Ionicons from 'react-native-vector-icons/Ionicons';
@@ -40,15 +42,22 @@ import {
 } from '../../../../constants/Styles';
 
 import {useSelector} from 'react-redux';
+import homeAd from '../../../../assets/images/home-ad.png';
+import homeAd2 from '../../../../assets/images/home-ad2.png';
 import {AppointmentSkeleton} from '../../../../components/Skeletons';
 import {APP_BASE_URL} from '../../../../constants/configs';
 import {signIn} from '../../../../services/api/merchant/accountServices';
 import Appointments from './components/Appointments';
+
 export default function HomeScreen(props) {
   const {width, height} = useWindowDimensions();
   const navigation = useNavigation();
   const [isLoadingAppointment, setIsloadingAppointment] = useState(true);
   const [isModalVisible, setModalVisible] = useState(false);
+  const [ads, setAds] = React.useState([
+    {key: '1', image: homeAd},
+    {key: '2', image: homeAd2},
+  ]);
   const currentRouteName = useSelector(state => state.global.currentRoute);
   console.log(APP_BASE_URL, 'api baseee');
   console.log(currentRouteName, 'Present route');
@@ -155,6 +164,53 @@ export default function HomeScreen(props) {
     );
   };
 
+  const adContainer = () => {
+    return (
+      <SwiperFlatList
+        style={{marginBottom: 20, marginTop: 20}}
+        autoplay
+        autoplayLoop
+        data={ads}
+        index={0}
+        autoplayDelay={5}
+        showPagination={true}
+        paginationStyle={{top: 195}}
+        paginationStyleItemActive={{
+          width: 7,
+          height: 7,
+          borderRadius: 6.58,
+          backgroundColor: COLOUR_DARK_GREEN,
+          marginLeft: 3,
+          marginRight: 3,
+        }}
+        paginationStyleItemInactive={{
+          backgroundColor: '#D9D9D9',
+        }}
+        paginationStyleItem={{
+          width: 7,
+          height: 7,
+          borderRadius: 6.58,
+          marginLeft: 3,
+          marginRight: 3,
+        }}
+        renderItem={({item}) => (
+          <View
+            style={[
+              styles.bannerContainer2,
+              {
+                width: width * 0.9,
+              },
+            ]}>
+            <Image
+              source={item.image}
+              //resizeMode="cover"
+              style={styles.bannerContainer2}
+            />
+          </View>
+        )}
+      />
+    );
+  };
   const comingSoon = true;
   return (
     <View
@@ -229,12 +285,11 @@ export default function HomeScreen(props) {
               </TouchableOpacity>
             </View>
           </View>
-
-          <ImageBackground
-            style={styles.bannerContainer}
-            source={bannerImage}
-            imageStyle={{borderRadius: 10}}>
-            {!comingSoon ? (
+          {!comingSoon ? (
+            <ImageBackground
+              style={styles.bannerContainer}
+              source={bannerImage}
+              imageStyle={{borderRadius: 10}}>
               <View style={{padding: 10, marginTop: 5}}>
                 <View style={styles.balanceContainer}>
                   <View>
@@ -264,18 +319,16 @@ export default function HomeScreen(props) {
                   </View>
                 </View>
               </View>
-            ) : (
-              <View
-                style={{
-                  padding: 10,
-                  marginTop: 40,
-                  justifyContent: 'center',
-                  alignSelf: 'center',
-                }}>
-                <Text style={{color: 'white'}}>Coming soon...</Text>
-              </View>
-            )}
-          </ImageBackground>
+            </ImageBackground>
+          ) : (
+            // <ImageBackground
+            //   resizeMode="cover"
+            //   style={styles.bannerContainer}
+            //   source={homeAd}
+            //   imageStyle={{borderRadius: 10}}></ImageBackground>
+            adContainer()
+            // adContainer2()
+          )}
 
           <View style={styles.navigationContainer}>
             <TouchableOpacity
@@ -306,19 +359,37 @@ export default function HomeScreen(props) {
           </View>
 
           <View style={styles.appointmentContainer}>
-            <Text style={styles.upcomingAppointmentText}>
-              Upcoming Appointment
-            </Text>
+            <View
+              style={{
+                flexDirection: 'row',
+                justifyContent: 'space-between',
+                alignItems: 'center',
+                marginBottom: 5,
+              }}>
+              <Text style={styles.upcomingAppointmentText}>
+                Upcoming Appointment
+              </Text>
+              <TouchableOpacity onPress={() => navigation.navigate('Schedule')}>
+                <Text style={styles.viewAllText}>View All</Text>
+              </TouchableOpacity>
+            </View>
+
             {!isLoadingAppointment ? (
               <>
                 {isAppointmentAvailable ? (
-                  <Appointments toggleModal={toggleModal} />
+                  <>
+                    <Appointments toggleModal={toggleModal} />
+                    <Appointments toggleModal={toggleModal} />
+                  </>
                 ) : (
                   noAppointment()
                 )}
               </>
             ) : (
-              <AppointmentSkeleton />
+              <>
+                <AppointmentSkeleton />
+                <AppointmentSkeleton />
+              </>
             )}
           </View>
           {/* <View style={styles.transactionContainer}>
@@ -380,6 +451,12 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     marginBottom: 25,
   },
+  bannerContainer2: {
+    width: '100%',
+    height: 137,
+    borderRadius: 10,
+    alignSelf: 'center',
+  },
   appointmentContainer: {
     top: 0,
   },
@@ -414,7 +491,13 @@ const styles = StyleSheet.create({
     fontWeight: '400',
     color: 'black',
   },
-
+  viewAllText: {
+    fontFamily: FONT_FAMILY_BODY,
+    fontSize: 10,
+    lineHeight: 11.72,
+    fontWeight: '400',
+    color: '#556B2F',
+  },
   noAppointmentContainer: {
     height: 60,
     borderWidth: 1,

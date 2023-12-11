@@ -53,7 +53,7 @@ export const AppointmentSkeleton = () => {
     <View
       style={{
         marginTop: 10,
-        marginBottom: 15,
+        marginBottom: 5,
         backgroundColor: 'white',
         width: '100%',
         height: 124,

@@ -58,7 +58,7 @@ export default function ProfileScreen() {
       <ScrollView showsVerticalScrollIndicator={false}>
         <View
           style={{
-            width: width > 428 ? 428 : '100%',
+            width: width > MAX_ALLOWED_WIDTH ? MAX_ALLOWED_WIDTH : '100%',
             alignSelf: 'center',
           }}>
           {/* <Swiper
@@ -131,7 +131,11 @@ export default function ProfileScreen() {
               <View
                 style={[
                   styles.imageContainer,
-                  {width: width > 428 ? 428 : width, justifyContent: 'center'},
+                  {
+                    width:
+                      width > MAX_ALLOWED_WIDTH ? MAX_ALLOWED_WIDTH : width,
+                    justifyContent: 'center',
+                  },
                 ]}>
                 <Image
                   source={item.image}
