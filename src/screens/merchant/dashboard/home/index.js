@@ -2,6 +2,7 @@ import {useNavigation} from '@react-navigation/native';
 import React, {useState} from 'react';
 import {
   BackHandler,
+  Dimensions,
   Image,
   ImageBackground,
   ScrollView,
@@ -48,6 +49,7 @@ import {AppointmentSkeleton} from '../../../../components/Skeletons';
 import {APP_BASE_URL} from '../../../../constants/configs';
 import {signIn} from '../../../../services/api/merchant/accountServices';
 import Appointments from './components/Appointments';
+const {width} = Dimensions.get('window');
 
 export default function HomeScreen(props) {
   const {width, height} = useWindowDimensions();
@@ -195,15 +197,12 @@ export default function HomeScreen(props) {
         }}
         renderItem={({item}) => (
           <View
-            style={[
-              styles.bannerContainer2,
-              {
-                width: width * 0.9,
-              },
-            ]}>
+            style={{
+              width: width,
+            }}>
             <Image
               source={item.image}
-              //resizeMode="cover"
+              resizeMode="cover"
               style={styles.bannerContainer2}
             />
           </View>
@@ -452,10 +451,9 @@ const styles = StyleSheet.create({
     marginBottom: 25,
   },
   bannerContainer2: {
-    width: '100%',
+    width: width * 0.9,
     height: 137,
     borderRadius: 10,
-    alignSelf: 'center',
   },
   appointmentContainer: {
     top: 0,

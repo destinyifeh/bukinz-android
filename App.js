@@ -2,7 +2,6 @@ import React from 'react';
 import {SafeAreaView} from 'react-native';
 import FlashMessage from 'react-native-flash-message';
 import {Provider} from 'react-redux';
-import {runTask} from './src/helpers/backgroundTasks/tasks';
 import {appStateTracker} from './src/helpers/utility';
 import AppNavigator from './src/navigation/AppNavigator';
 import {store} from './src/state-management/store';
@@ -10,7 +9,7 @@ function App() {
   React.useEffect(() => {
     appStateTracker();
     //notificationService();
-    runTask();
+    //runTask();
   }, []);
 
   return (
