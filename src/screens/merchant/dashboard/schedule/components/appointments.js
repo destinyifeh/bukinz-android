@@ -13,12 +13,10 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import appointmentBackgroundImage from '../../../../../assets/images/appointment_background.png';
 import {
-  COLOUR_GHOST_WHITE,
   COLOUR_SECONDARY_GREY,
   COLOUR_TERRACOTTA,
   FONT_FAMILY_BODY,
   FONT_FAMILY_BODY_BOLD,
-  MAX_ALLOWED_WIDTH,
 } from '../../../../../constants/Styles';
 //import appointmentBackgroundImage2 from "../../../../../assets/images/appointment_background2.png"
 import {useFocusEffect} from '@react-navigation/native';
@@ -372,20 +370,12 @@ const Appointments = () => {
   //   }
 
   return (
-    <View
-      style={{flex: 1, paddingBottom: 30, backgroundColor: COLOUR_GHOST_WHITE}}>
-      <View
-        style={{
-          width: width > MAX_ALLOWED_WIDTH ? MAX_ALLOWED_WIDTH : width * 0.9,
-          alignSelf: 'center',
-          marginTop: 25,
-        }}>
-        {/* {pendingAppointment()} */}
-        {morningSession()}
-        {afternoonSession()}
-        {eveningSession()}
-        {/* {noSession()} */}
-      </View>
+    <View>
+      {/* {pendingAppointment()} */}
+      {morningSession()}
+      {afternoonSession()}
+      {eveningSession()}
+      {/* {noSession()} */}
     </View>
   );
 };

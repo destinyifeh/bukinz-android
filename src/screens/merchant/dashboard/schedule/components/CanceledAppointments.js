@@ -1,10 +1,7 @@
 import {useFocusEffect} from '@react-navigation/native';
 import React from 'react';
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-import {
-  SessionSkeleton,
-  TextSkeleton,
-} from '../../../../../components/Skeletons';
+import {SessionSkeleton} from '../../../../../components/Skeletons';
 import {
   COLOUR_DARK_GREEN,
   COLOUR_SECONDARY_GREY,
@@ -27,7 +24,7 @@ const CanceledAppointments = () => {
   );
   const data4 = [
     {
-      time: '11:1am',
+      time: '11:1am - 12:15pm',
       date: 'Nov 9',
       title: 'Haircut and Shaving',
     },
@@ -49,22 +46,21 @@ const CanceledAppointments = () => {
     <View>
       {isLoading ? (
         <View>
-          <TextSkeleton marginBottom={15} width={150} />
           <SessionSkeleton height={82} />
         </View>
       ) : (
         <>
-          {data4
+          {data4.length > 0
             ? data4.map(item => {
                 return (
                   <View style={{marginBottom: 10}} key={item.title}>
                     <TouchableOpacity
                       style={styles.canceledAppointmentInnerContainer}>
-                      <View style={{marginLeft: 20}}>
+                      <View style={{marginLeft: 20, gap: 8}}>
                         <Text
                           style={[
                             styles.timeText,
-                            {bottom: 8, color: 'black'},
+                            {bottom: 0, color: 'black'},
                           ]}>
                           {item.time}
                         </Text>
@@ -87,8 +83,9 @@ const styles = StyleSheet.create({
     borderWidth: 0.3,
     borderColor: COLOUR_SECONDARY_GREY,
     borderRadius: 10,
-    backgroundColor: '#D2691E33',
+    // backgroundColor: '#D2691E33',
     justifyContent: 'center',
+    backgroundColor: '#F5DEB3',
   },
   text: {
     fontFamily: FONT_FAMILY_BODY,

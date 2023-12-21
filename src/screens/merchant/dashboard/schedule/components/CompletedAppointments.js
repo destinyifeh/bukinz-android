@@ -7,18 +7,17 @@ import {
   View,
 } from 'react-native';
 import appointmentBackgroundImage from '../../../../../assets/images/appointment_background.png';
-import {FONT_FAMILY_BODY} from '../../../../../constants/Styles';
+import {
+  COLOUR_DARK_GREEN,
+  FONT_FAMILY_BODY,
+} from '../../../../../constants/Styles';
 
 import Feather from 'react-native-vector-icons/Feather';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 //import appointmentBackgroundImage2 from "../../../../../assets/images/appointment_background2.png"
 import {useFocusEffect} from '@react-navigation/native';
 import * as Animatable from 'react-native-animatable';
-import {
-  SessionSkeleton,
-  TextSkeleton,
-} from '../../../../../components/Skeletons';
+import {SessionSkeleton} from '../../../../../components/Skeletons';
 
 const CompletedAppointments = () => {
   const [isItem, setIsItem] = React.useState('');
@@ -94,28 +93,18 @@ const CompletedAppointments = () => {
               </Text>
             </View>
 
-            <View style={[styles.imageContainerSecondFlexView, {width: '80%'}]}>
+            <View style={styles.imageContainerSecondFlexView}>
               <TouchableOpacity
                 accessible={true}
-                accessibilityLabel="Call"
+                accessibilityLabel="Book Again"
                 style={styles.infoButtonContainer}>
-                <Feather name="phone-call" size={24} color="white" />
+                <Text style={styles.infoButtonText}>Book Again</Text>
               </TouchableOpacity>
               <TouchableOpacity
                 accessible={true}
-                accessibilityLabel="Message"
+                accessibilityLabel="Leave Review"
                 style={styles.infoButtonContainer}>
-                <MaterialCommunityIcons
-                  name="message-text-outline"
-                  color="white"
-                  size={24}
-                />
-              </TouchableOpacity>
-              <TouchableOpacity
-                accessible={true}
-                accessibilityLabel="Reschedule"
-                style={styles.infoButtonContainer}>
-                <Feather name="clock" size={24} color="white" />
+                <Text style={styles.infoButtonText}>Leave Review</Text>
               </TouchableOpacity>
             </View>
           </View>
@@ -123,34 +112,50 @@ const CompletedAppointments = () => {
       </Animatable.View>
     );
   };
+
+  const NoSessionContents = () => {
+    return (
+      <View style={styles.noAppointmentContainer}>
+        <View style={styles.noAppointmentInnerContainer}>
+          <Text style={styles.noAppointmentText}>No Appointments</Text>
+          <Text style={styles.noAppointmentDesc}>
+            No worries!! Check back for bookings and appointments....
+          </Text>
+        </View>
+      </View>
+    );
+  };
   return (
     <View>
       {isLoading ? (
         <View>
-          <TextSkeleton marginBottom={15} marginTop={15} />
           <SessionSkeleton />
         </View>
       ) : (
         <>
-          {data.map(item => {
-            return (
-              <View style={{marginBottom: 15}} key={item.time}>
-                <TouchableOpacity onPress={() => onToggleSession(item.time)}>
-                  <ImageBackground
-                    source={appointmentBackgroundImage}
-                    style={styles.sessionContainer}
-                    imageStyle={styles.imageStyle}>
-                    <Text style={[styles.timeText, {left: 22, color: 'black'}]}>
-                      {item.time}
-                    </Text>
-                  </ImageBackground>
-                </TouchableOpacity>
-                {isItem === item.time && (
-                  <View style={{marginTop: 10}}>{nextSession(item)}</View>
-                )}
-              </View>
-            );
-          })}
+          {data.length > 0
+            ? data.map(item => {
+                return (
+                  <View style={{marginBottom: 15}} key={item.time}>
+                    <TouchableOpacity
+                      onPress={() => onToggleSession(item.time)}>
+                      <ImageBackground
+                        source={appointmentBackgroundImage}
+                        style={styles.sessionContainer}
+                        imageStyle={styles.imageStyle}>
+                        <Text
+                          style={[styles.timeText, {left: 22, color: 'white'}]}>
+                          {item.time}
+                        </Text>
+                      </ImageBackground>
+                    </TouchableOpacity>
+                    {isItem === item.time && (
+                      <View style={{marginTop: 10}}>{nextSession(item)}</View>
+                    )}
+                  </View>
+                );
+              })
+            : NoSessionContents()}
         </>
       )}
     </View>
@@ -180,6 +185,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
+    gap: 10,
+    marginTop: 10,
   },
   imageContainer: {
     minHeight: 200,
@@ -197,7 +204,7 @@ const styles = StyleSheet.create({
     height: 61,
     borderRadius: 10,
     borderWidth: 0.5,
-
+    justifyContent: 'center',
     width: '100%',
   },
   title: {
@@ -216,13 +223,46 @@ const styles = StyleSheet.create({
     color: 'white',
   },
   infoButtonContainer: {
-    width: 42,
-    height: 42,
-    borderRadius: 50,
-    borderWidth: 0.3,
+    width: 135,
+    height: 36,
+    borderRadius: 10,
+    borderWidth: 0.5,
     borderColor: 'white',
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  infoButtonText: {
+    fontFamily: FONT_FAMILY_BODY,
+    fontSize: 14,
+    fontWeight: '400',
+    lineHeight: 16.41,
+    color: 'white',
+  },
+  noAppointmentContainer: {
+    flex: 1,
+    marginBottom: 30,
+  },
+  noAppointmentInnerContainer: {
+    width: '100%',
+    alignSelf: 'center',
+    marginVertical: 50,
+  },
+  noAppointmentText: {
+    fontFamily: FONT_FAMILY_BODY,
+    fontWeight: '600',
+    fontSize: 24,
+    lineHeight: 28.13,
+    color: COLOUR_DARK_GREEN,
+    textAlign: 'center',
+    marginBottom: 20,
+  },
+  noAppointmentDesc: {
+    color: 'grey',
+    fontWeight: '400',
+    fontFamily: FONT_FAMILY_BODY,
+    fontSize: 14,
+    lineHeight: 16.41,
+    textAlign: 'center',
   },
 });
 

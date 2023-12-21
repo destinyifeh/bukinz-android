@@ -107,67 +107,77 @@ export default function ScheduleScreen(props) {
   };
 
   return (
-    <View style={{flex: 1, backgroundColor: COLOUR_WHITE}}>
-      <ScrollView showsVerticalScrollIndicator={false}>
-        <View style={{marginTop: 20}}>
-          <Calendar
-            markedDates={marked}
-            theme={{
-              textMonthFontFamily: FONT_FAMILY_BODY,
-              dayTextColor: 'grey',
-              calendarBackground: 'white',
-            }}
-            renderArrow={direction => (
-              <View style={styles.calendarRenderArrowContainer}>
-                <Entypo
-                  name={direction === 'left' ? 'chevron-left' : 'chevron-right'}
-                  size={24}
-                  color={COLOUR_DARK_GREEN}
-                />
-              </View>
+    <View style={{flex: 1}}>
+      <ScrollView showsVerticalScrollIndicator={false} style={{flex: 1}}>
+        <View style={{flex: 1, backgroundColor: COLOUR_WHITE}}>
+          <View style={{marginTop: 20}}>
+            <Calendar
+              markedDates={marked}
+              theme={{
+                textMonthFontFamily: FONT_FAMILY_BODY,
+                dayTextColor: 'grey',
+                calendarBackground: 'white',
+              }}
+              renderArrow={direction => (
+                <View style={styles.calendarRenderArrowContainer}>
+                  <Entypo
+                    name={
+                      direction === 'left' ? 'chevron-left' : 'chevron-right'
+                    }
+                    size={24}
+                    color={COLOUR_DARK_GREEN}
+                  />
+                </View>
+              )}
+              renderHeader={date => {
+                const month = date.toString('MMMM');
+                return <Text style={styles.monthText}>{month}</Text>;
+              }}
+              style={{}}
+              onDayPress={day => console.log('onDayPress', day)}
+            />
+          </View>
+          <View style={styles.navContainer}>
+            <TouchableOpacity onPress={() => handleAppointment('pending')}>
+              <Text
+                style={
+                  appointmentType.pending
+                    ? styles.activeNavText
+                    : styles.navText
+                }>
+                Pending
+              </Text>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => handleAppointment('completed')}>
+              <Text
+                style={
+                  appointmentType.completed
+                    ? styles.activeNavText
+                    : styles.navText
+                }>
+                Completed
+              </Text>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => handleAppointment('canceled')}>
+              <Text
+                style={
+                  appointmentType.canceled
+                    ? styles.activeNavText
+                    : styles.navText
+                }>
+                Canceled
+              </Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+        <View style={styles.contentsView}>
+          <View style={styles.contents}>
+            {appointmentType.pending && (
+              <>{noSessionContents ? <Appointments /> : NoSessionContents()}</>
             )}
-            renderHeader={date => {
-              const month = date.toString('MMMM');
-              return <Text style={styles.monthText}>{month}</Text>;
-            }}
-            style={{}}
-            onDayPress={day => console.log('onDayPress', day)}
-          />
-        </View>
-        <View style={styles.navContainer}>
-          <TouchableOpacity onPress={() => handleAppointment('pending')}>
-            <Text
-              style={
-                appointmentType.pending ? styles.activeNavText : styles.navText
-              }>
-              Pending
-            </Text>
-          </TouchableOpacity>
-          <TouchableOpacity onPress={() => handleAppointment('completed')}>
-            <Text
-              style={
-                appointmentType.completed
-                  ? styles.activeNavText
-                  : styles.navText
-              }>
-              Completed
-            </Text>
-          </TouchableOpacity>
-          <TouchableOpacity onPress={() => handleAppointment('canceled')}>
-            <Text
-              style={
-                appointmentType.canceled ? styles.activeNavText : styles.navText
-              }>
-              Canceled
-            </Text>
-          </TouchableOpacity>
-        </View>
-        <View style={styles.contents}>
-          {appointmentType.pending && (
-            <>{noSessionContents ? <Appointments /> : NoSessionContents()}</>
-          )}
-          {appointmentType.completed && <CompletedAppointments />}
-          {appointmentType.canceled && <CanceledAppointments />}
+            {appointmentType.completed && <CompletedAppointments />}
+            {appointmentType.canceled && <CanceledAppointments />}
+          </View>
         </View>
       </ScrollView>
     </View>
@@ -221,10 +231,17 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     marginTop: 30,
   },
-
+  contentsView: {
+    flex: 1,
+    height: '100%',
+    backgroundColor: COLOUR_GHOST_WHITE,
+    marginTop: 12,
+  },
   contents: {
+    flex: 1,
     width: width > MAX_ALLOWED_WIDTH ? MAX_ALLOWED_WIDTH : width * 0.9,
     marginTop: 10,
+    marginBottom: 30,
     alignSelf: 'center',
   },
   calendarRenderArrowContainer: {
