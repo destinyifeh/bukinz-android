@@ -29,7 +29,7 @@ export default function MessageDetailScreen() {
   const [isOpen, setIsOpen] = React.useState(false);
   const [message, setMessage] = React.useState('');
   const [data, setData] = React.useState('');
-
+  const messageInputRef = React.useRef();
   useFocusEffect(
     React.useCallback(() => {
       StatusBar.setBackgroundColor(COLOUR_DARK_GREEN);
@@ -48,6 +48,7 @@ export default function MessageDetailScreen() {
 
   const handleEmojiSelected = value => {
     console.log(value, 'valueee');
+    messageInputRef.current?.focus();
     setMessage(message + value.emoji);
   };
 
@@ -87,6 +88,7 @@ export default function MessageDetailScreen() {
               onChangeText={handleOnchange}
               defaultValue={message}
               placeholderTextColor="#929090"
+              ref={messageInputRef}
             />
           </View>
           <TouchableOpacity style={styles.sendView} onPress={onSubmitMessage}>

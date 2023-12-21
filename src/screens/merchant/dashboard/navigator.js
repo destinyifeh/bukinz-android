@@ -65,7 +65,7 @@ const DashboardBottomTab = () => {
       />
 
       <Tab.Screen
-        name="Schedule"
+        name="Appointments"
         component={ScheduleScreen}
         options={{
           tabBarIcon: ({color, size}) => (

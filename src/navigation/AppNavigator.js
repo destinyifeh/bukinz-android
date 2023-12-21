@@ -5,6 +5,7 @@ import {
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import React, {useRef} from 'react';
 import {FIRST_TIME_USER} from '../constants/configs';
+import {runTask} from '../helpers/backgroundTasks/tasks';
 import {screenTrackingService} from '../helpers/utility';
 import CustomerStack from '../screens/customer/navigator';
 import LandingScreen from '../screens/landing';
@@ -13,6 +14,7 @@ import MerchantStack from '../screens/merchant/navigator';
 import SignupScreen from '../screens/merchant/signup';
 import OnBoardingScreen from '../screens/onboarding';
 import {getData} from '../services/dataServices';
+
 const Stack = createNativeStackNavigator();
 
 export default function AppNavigator() {
@@ -22,6 +24,7 @@ export default function AppNavigator() {
 
   React.useEffect(() => {
     checkFirstTimeUser();
+    runTask();
   }, []);
 
   const checkFirstTimeUser = async () => {

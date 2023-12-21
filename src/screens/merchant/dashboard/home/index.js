@@ -87,12 +87,7 @@ export default function HomeScreen(props) {
     }, []),
   );
 
-  // React.useEffect(() => {
-  //   setIsloadingAppointment(true);
-  //   setTimeout(() => {
-  //     setIsloadingAppointment(false);
-  //   }, 5000);
-  // }, []);
+  React.useEffect(() => {}, []);
 
   useFocusEffect(
     React.useCallback(() => {
@@ -368,7 +363,8 @@ export default function HomeScreen(props) {
               <Text style={styles.upcomingAppointmentText}>
                 Upcoming Appointment
               </Text>
-              <TouchableOpacity onPress={() => navigation.navigate('Schedule')}>
+              <TouchableOpacity
+                onPress={() => navigation.navigate('Appointments')}>
                 <Text style={styles.viewAllText}>View All</Text>
               </TouchableOpacity>
             </View>

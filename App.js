@@ -9,7 +9,7 @@ function App() {
   React.useEffect(() => {
     appStateTracker();
     //notificationService();
-    //runTask();
+    // runTask();
   }, []);
 
   return (
