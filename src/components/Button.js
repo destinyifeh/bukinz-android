@@ -27,7 +27,7 @@ const Button = ({
         ]}
         disabled={disabled || loading}>
         {loading ? (
-          <ActivityIndicator color={'white'} style={{top: 13}} />
+          <ActivityIndicator color={'white'} />
         ) : (
           <Text style={[GlobalStyles.buttonText, {...buttonTextStyle}]}>
             {title}

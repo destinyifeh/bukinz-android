@@ -46,6 +46,8 @@ import homeAd from '../../../assets/images/home-ad.png';
 import homeAd2 from '../../../assets/images/home-ad2.png';
 import man2 from '../../../assets/images/man.jpg';
 import man from '../../../assets/images/man2.jpg';
+import RecentServices from './components/RecentServices';
+import Services from './components/Services';
 
 export default function CustomerHomeScreen(props) {
   const {width, height} = useWindowDimensions();
@@ -384,6 +386,7 @@ export default function CustomerHomeScreen(props) {
               horizontal={true}
               showsHorizontalScrollIndicator={false}
               contentContainerStyle={styles.servicesImageContainer}>
+              <Services />
               <View>
                 <TouchableOpacity>
                   <ImageBackground
@@ -395,16 +398,18 @@ export default function CustomerHomeScreen(props) {
                       start={{x: 0, y: 0}}
                       end={{x: 1, y: 0}}
                       style={{width: 146, height: 97, borderRadius: 15}}>
-                      <View
+                      <LinearGradient
                         style={{
                           width: 146,
                           height: 20,
                           top: 77,
                           borderBottomLeftRadius: 15,
                           borderBottomRightRadius: 15,
-                          backgroundColor: '#000000',
-                          opacity: 0.5,
-                        }}>
+                        }}
+                        colors={[
+                          'rgba(255, 255, 255, 0.9)',
+                          'rgba(0, 0, 0, 0.8)',
+                        ]}>
                         <View
                           style={{
                             flexDirection: 'row',
@@ -413,66 +418,7 @@ export default function CustomerHomeScreen(props) {
                             left: 10,
                             paddingTop: 3.5,
                           }}>
-                          <Ionicons
-                            name="location-outline"
-                            size={9}
-                            color="white"
-                          />
-                          <Text
-                            style={{
-                              fontFamily: FONT_FAMILY_BODY,
-                              fontSize: 10,
-                              lineHeight: 11.72,
-                              fontWeight: '400',
-                              color: 'white',
-                            }}>
-                            Lagos, Nigeria
-                          </Text>
-                        </View>
-                      </View>
-                    </LinearGradient>
-                  </ImageBackground>
-                </TouchableOpacity>
-
-                <View style={{marginTop: 10}}>
-                  <Text style={styles.serviceTitleText}>Parking Paints</Text>
-                  <Text style={styles.serviceDescText}>Painting service</Text>
-                </View>
-              </View>
-              <View>
-                <TouchableOpacity>
-                  <ImageBackground
-                    source={man}
-                    style={{width: 146, height: 97, borderRadius: 15}}
-                    imageStyle={{width: 146, height: 97, borderRadius: 15}}>
-                    <LinearGradient
-                      colors={['rgba(0, 0, 0, 0.6)', 'rgba(0, 0, 0, 0)']}
-                      start={{x: 0, y: 0}}
-                      end={{x: 1, y: 0}}
-                      style={{width: 146, height: 97, borderRadius: 15}}>
-                      <View
-                        style={{
-                          width: 146,
-                          height: 20,
-                          top: 77,
-                          borderBottomLeftRadius: 15,
-                          borderBottomRightRadius: 15,
-                          backgroundColor: '#000000',
-                          opacity: 0.5,
-                        }}>
-                        <View
-                          style={{
-                            flexDirection: 'row',
-                            alignItems: 'center',
-                            gap: 3,
-                            left: 10,
-                            paddingTop: 3.5,
-                          }}>
-                          <Ionicons
-                            name="location-outline"
-                            size={9}
-                            color="white"
-                          />
+                          <Ionicons name="location" size={9} color="white" />
                           <Text
                             style={{
                               fontFamily: FONT_FAMILY_BODY,
@@ -484,7 +430,7 @@ export default function CustomerHomeScreen(props) {
                             Edo, Nigeria
                           </Text>
                         </View>
-                      </View>
+                      </LinearGradient>
                     </LinearGradient>
                   </ImageBackground>
                 </TouchableOpacity>
@@ -504,16 +450,18 @@ export default function CustomerHomeScreen(props) {
                       start={{x: 0, y: 0}}
                       end={{x: 1, y: 0}}
                       style={{width: 146, height: 97, borderRadius: 15}}>
-                      <View
+                      <LinearGradient
                         style={{
                           width: 146,
                           height: 20,
                           top: 77,
                           borderBottomLeftRadius: 15,
                           borderBottomRightRadius: 15,
-                          backgroundColor: '#000000',
-                          opacity: 0.5,
-                        }}>
+                        }}
+                        colors={[
+                          'rgba(255, 255, 255, 0.9)',
+                          'rgba(0, 0, 0, 0.8)',
+                        ]}>
                         <View
                           style={{
                             flexDirection: 'row',
@@ -522,11 +470,7 @@ export default function CustomerHomeScreen(props) {
                             left: 10,
                             paddingTop: 3.5,
                           }}>
-                          <Ionicons
-                            name="location-outline"
-                            size={9}
-                            color="white"
-                          />
+                          <Ionicons name="location" size={9} color="white" />
                           <Text
                             style={{
                               fontFamily: FONT_FAMILY_BODY,
@@ -538,7 +482,7 @@ export default function CustomerHomeScreen(props) {
                             Kano, Nigeria
                           </Text>
                         </View>
-                      </View>
+                      </LinearGradient>
                     </LinearGradient>
                   </ImageBackground>
                 </TouchableOpacity>
@@ -561,6 +505,7 @@ export default function CustomerHomeScreen(props) {
               horizontal={true}
               showsHorizontalScrollIndicator={false}
               contentContainerStyle={styles.recentServicesImageContainer}>
+              <RecentServices />
               <View>
                 <TouchableOpacity>
                   <ImageBackground
@@ -572,16 +517,18 @@ export default function CustomerHomeScreen(props) {
                       start={{x: 0, y: 0}}
                       end={{x: 1, y: 0}}
                       style={{width: 306, height: 141, borderRadius: 15}}>
-                      <View
+                      <LinearGradient
                         style={{
                           width: 306,
                           height: 20,
                           top: 120.9,
                           borderBottomLeftRadius: 15,
                           borderBottomRightRadius: 15,
-                          backgroundColor: '#000000',
-                          opacity: 0.5,
-                        }}>
+                        }}
+                        colors={[
+                          'rgba(255, 255, 255, 0.9)',
+                          'rgba(0, 0, 0, 0.8)',
+                        ]}>
                         <View
                           style={{
                             flexDirection: 'row',
@@ -591,67 +538,7 @@ export default function CustomerHomeScreen(props) {
                             right: 10,
                             paddingTop: 3.5,
                           }}>
-                          <Ionicons
-                            name="location-outline"
-                            size={9}
-                            color="white"
-                          />
-                          <Text
-                            style={{
-                              fontFamily: FONT_FAMILY_BODY,
-                              fontSize: 10,
-                              lineHeight: 11.72,
-                              fontWeight: '400',
-                              color: 'white',
-                            }}>
-                            Lagos, Nigeria
-                          </Text>
-                        </View>
-                      </View>
-                    </LinearGradient>
-                  </ImageBackground>
-                </TouchableOpacity>
-
-                <View style={{marginTop: 10}}>
-                  <Text style={styles.serviceTitleText}>Parking Paints</Text>
-                  <Text style={styles.serviceDescText}>Painting service</Text>
-                </View>
-              </View>
-              <View>
-                <TouchableOpacity>
-                  <ImageBackground
-                    source={man}
-                    style={{width: 306, height: 141, borderRadius: 15}}
-                    imageStyle={{width: 306, height: 141, borderRadius: 15}}>
-                    <LinearGradient
-                      colors={['rgba(0, 0, 0, 0.6)', 'rgba(0, 0, 0, 0)']}
-                      start={{x: 0, y: 0}}
-                      end={{x: 1, y: 0}}
-                      style={{width: 306, height: 141, borderRadius: 15}}>
-                      <View
-                        style={{
-                          width: 306,
-                          height: 20,
-                          top: 120.9,
-                          borderBottomLeftRadius: 15,
-                          borderBottomRightRadius: 15,
-                          backgroundColor: '#000000',
-                          opacity: 0.5,
-                        }}>
-                        <View
-                          style={{
-                            flexDirection: 'row',
-                            alignItems: 'center',
-                            justifyContent: 'flex-end',
-                            gap: 3,
-                            right: 10,
-                            paddingTop: 3.5,
-                          }}>
-                          <Ionicons
-                            name="location-outline"
-                            size={9}
-                            color="white"
-                          />
+                          <Ionicons name="location" size={9} color="white" />
                           <Text
                             style={{
                               fontFamily: FONT_FAMILY_BODY,
@@ -663,7 +550,7 @@ export default function CustomerHomeScreen(props) {
                             Edo, Nigeria
                           </Text>
                         </View>
-                      </View>
+                      </LinearGradient>
                     </LinearGradient>
                   </ImageBackground>
                 </TouchableOpacity>
@@ -686,16 +573,18 @@ export default function CustomerHomeScreen(props) {
                       start={{x: 0, y: 0}}
                       end={{x: 1, y: 0}}
                       style={{width: 306, height: 141, borderRadius: 15}}>
-                      <View
+                      <LinearGradient
                         style={{
                           width: 306,
                           height: 20,
                           top: 120.9,
                           borderBottomLeftRadius: 15,
                           borderBottomRightRadius: 15,
-                          backgroundColor: '#000000',
-                          opacity: 0.5,
-                        }}>
+                        }}
+                        colors={[
+                          'rgba(255, 255, 255, 0.9)',
+                          'rgba(0, 0, 0, 0.8)',
+                        ]}>
                         <View
                           style={{
                             flexDirection: 'row',
@@ -705,11 +594,7 @@ export default function CustomerHomeScreen(props) {
                             right: 10,
                             paddingTop: 3.5,
                           }}>
-                          <Ionicons
-                            name="location-outline"
-                            size={9}
-                            color="white"
-                          />
+                          <Ionicons name="location" size={9} color="white" />
                           <Text
                             style={{
                               fontFamily: FONT_FAMILY_BODY,
@@ -721,7 +606,7 @@ export default function CustomerHomeScreen(props) {
                             Kano, Nigeria
                           </Text>
                         </View>
-                      </View>
+                      </LinearGradient>
                     </LinearGradient>
                   </ImageBackground>
                 </TouchableOpacity>

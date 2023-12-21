@@ -92,7 +92,7 @@ const GlobalStyles = StyleSheet.create({
     width: '100%',
     height: 43,
     borderRadius: 8,
-    //backgroundColor: COLOUR_TERRACOTTA,
+    justifyContent: 'center',
   },
 
   buttonText: {
@@ -101,7 +101,6 @@ const GlobalStyles = StyleSheet.create({
     lineHeight: LINE_HEIGHT_SMALL,
     color: COLOUR_WHITE,
     textAlign: 'center',
-    marginTop: 16,
   },
   buttonOutlineText: {
     fontFamily: FONT_FAMILY_BODY,

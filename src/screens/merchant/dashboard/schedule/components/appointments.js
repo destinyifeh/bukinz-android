@@ -380,7 +380,7 @@ const Appointments = () => {
           alignSelf: 'center',
           marginTop: 25,
         }}>
-        {pendingAppointment()}
+        {/* {pendingAppointment()} */}
         {morningSession()}
         {afternoonSession()}
         {eveningSession()}
